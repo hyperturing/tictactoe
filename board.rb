@@ -18,21 +18,39 @@ class Board
   end
 
   def valid_move?(move)
-    @board[move[0].to_i][move[1].to_i].zero?
+    @board[move[0]][move[1]].zero?
   end
 
   def three_in_row?(move)
     # returns true if there are 3 pieces in-line
     # Check row, column, and optional diagonal of move:
     @matrix = Matrix.rows(@board)
-    @matrix.row(move[0].to_i).sum.abs == 3 || @matrix.row(move[1].to_i).sum.abs == 3 || @matrix.each(:diagonal).sum.abs == 3
+    @matrix.row(move[0]).sum.abs == 3 || @matrix.row(move[1]).sum.abs == 3 || @matrix.each(:diagonal).sum.abs == 3
   end
 
   def place_piece(move, piece)
-    @board[move[0].to_i][move[1].to_i] = piece == 'X' ? 1 : -1
+    @board[move[0]][move[1]] = piece == 'X' ? 1 : -1
   end
 
   def board
-    @board
+    @output = @board.map { |row| row.map { |element| icon(element) } }
+    puts @output.map { |element|
+      element.join(' ')
+    }
   end
+
+  private
+
+  def icon(value)
+    case value
+    when 1
+      ' X '
+    when -1
+      ' O '
+    when 0
+      '   '
+    end
+  end
+
 end
+

@@ -18,6 +18,6 @@ class Player
 
   def make_move
     puts 'Make your move: '
-    @move = gets.chomp.split(' ')
+    @move = gets.chomp.split(' ').map{ |element| element.to_i - 1}
   end
 end

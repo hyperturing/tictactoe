@@ -13,6 +13,7 @@
 #######################################################################
 class Computer < Player
   def make_move
+    puts 'Ash2.0 is making a move'
     @move = [rand(Board::HEIGHT - 1) + 1, rand(Board::WIDTH - 1) + 1]
   end
 end
